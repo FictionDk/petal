@@ -47,14 +47,29 @@ export default {
         },
         async emailLogin () {
             console.log('Get:'+this.username)
-            Toast({
-                message: '正在登录..',
-                iconClass: 'icon icon-sucess',
-                duration: 2000
-            })
             let md5password = '@@@chuanyue' + this.$md5(this.password)
             this.res = await accountLogin(this.username, md5password)
             console.log('res:'+this.res)
+            var token = ""
+            if(this.res.code === "0") {
+                token = this.res.token
+                Toast({
+                    message: '登录成功',
+                    iconClass: 'icon icon-sucess',
+                    duration: 2000
+                })
+                var ses = window.sessionStorage
+                ses.setItem("token",token)
+                ses.setItem("username",this.res.user.username)
+                ses.setItem("nickname",this.res.user.nickName)
+                this.$router.push('/admin')
+            }else{
+                Toast({
+                    message: '登录失败',
+                    duration: 2000
+                })
+                this.password = ''
+            }
         }
     }
 }

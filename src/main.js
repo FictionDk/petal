@@ -6,11 +6,14 @@ import 'mint-ui/lib/style.css'
 import App from './App'
 import router from './router'
 import md5 from 'js-md5'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.prototype.$md5 = md5
 
 Vue.config.productionTip = false
 Vue.use(MintUI)
+Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

@@ -13,11 +13,14 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
         })
     }
 
+    var token = window.sessionStorage.getItem("token")
+
     let requestConfig = {
         method: type,
         headers: {
             "Accept": "application/json",
-            'Content-Type': "application/json"
+            'Content-Type': "application/json",
+            'token': token
         }
     }
 
